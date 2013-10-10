@@ -1,0 +1,65 @@
+{
+  "auto_indent": true,
+  "bold_folder_labels": true,
+  "color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
+  "draw_indent_guides": true,
+  "file_exclude_patterns":
+  [
+    "*.pyc",
+    "*.pyo",
+    "*.exe",
+    "*.dll",
+    "*.obj",
+    "*.o",
+    "*.a",
+    "*.lib",
+    "*.so",
+    "*.dylib",
+    "*.ncb",
+    "*.sdf",
+    "*.suo",
+    "*.pdb",
+    "*.idb",
+    ".DS_Store",
+    "*.class",
+    "*.psd",
+    "*.db",
+    ".scssc",
+    "coverage.data",
+    "capybara-*.html"
+  ],
+  "folder_exclude_patterns":
+  [
+    ".svn",
+    ".git",
+    ".hg",
+    "CVS",
+    ".bundle",
+    "vendor/cache",
+    "tmp/cache",
+    "tmp/capybara/",
+    "coverage",
+    "doc"
+  ],
+  "font_face": "Inconsolata",
+  "font_size": 24.0,
+  "ignored_packages":
+  [
+  ],
+  "line_padding_bottom": 1,
+  "line_padding_top": 1,
+  "mid_line_tabs": false,
+  "rulers":
+  [
+    50,
+    72
+  ],
+  "scroll_past_end": true,
+  "tab_size": 2,
+  "theme": "Night.sublime-theme",
+  "translate_tabs_to_spaces": true,
+  "trim_trailing_white_space_on_save": false,
+  "use_simple_full_screen": false,
+  "use_tab_stops": true,
+  "vintage_start_in_command_mode": true
+}
