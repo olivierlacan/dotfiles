@@ -4,7 +4,7 @@
 # then look into rbenv shims
 # then look into Homebrew binaries
 # then delegate to the system $PATH
-export PATH="bin:/Users/olivierlacan/.rbenv/shims:/usr/local/heroku/bin:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+export PATH="bin:/Users/olivierlacan/.rbenv/bin:/Users/olivierlacan/.rbenv/shims:/usr/local/heroku/bin:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 export NODE_PATH="/usr/local/lib/node"
 export PATH="$PATH:$NODE_PATH"
 
