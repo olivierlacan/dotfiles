@@ -17,8 +17,8 @@ export PATH="$PATH:$NODE_PATH"
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 # load variables I don't want everybody to see when they look at my bash_profile
-if [ -f ~/.bash_colors ]; then
-  source ~/.bash_colors
+if [ -f ~/.bash_variables ]; then
+  source ~/.bash_variables
 fi
 
 # load aliases
