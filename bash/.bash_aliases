@@ -9,6 +9,8 @@ alias gpu="git push"
 alias gpr="git pull --rebase"
 alias gco="git checkout"
 alias blastschema="git checkout db/schema.rb"
+alias gitpurge="git checkout master && git remote update --prune | git branch -r --merged | grep -v master | sed -e 's/origin\//:/' | xargs git push origin"
+alias gittags="for t in `git tag -l`; do git cat-file -p `git rev-parse $t`; done"
 
 # Bundler
 alias be="bundle exec"
@@ -18,6 +20,9 @@ alias tower="gittower"
 
 # Xcode
 alias xcode="open *.xcodeproj"
+
+# Rails
+alias migrateback='rake -g rollback_branch_migrations[master]'
 
 if [ -f ~/.bash_secret_aliases ]; then
   source ~/.bash_secret_aliases
