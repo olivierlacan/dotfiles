@@ -5,8 +5,8 @@
 # then look into Homebrew binaries
 # then delegate to the system $PATH
 export PATH="bin:/Users/olivierlacan/.rbenv/bin:/Users/olivierlacan/.rbenv/shims:/usr/local/heroku/bin:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin:$PATH"
-export NODE_PATH="/usr/local/lib/node"
-export PATH="$PATH:$NODE_PATH"
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
 
 # enable shims and autocompletion for rbenv
 # disabled because it prepends /Users/olivierlacan/.rbenv/shims
