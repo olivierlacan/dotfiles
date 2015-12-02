@@ -1,20 +1,15 @@
-# make sure local binaries are fired first, yes, I know this is super 
-# fucking unsafe, but if someone can exploit this, I have other issues.
-# then look for the Heroku binary
-# then look into rbenv shims
-# then look into Homebrew binaries
-# then delegate to the system $PATH
-export PATH="bin:/Users/olivierlacan/.rbenv/bin:/Users/olivierlacan/.rbenv/shims:/usr/local/heroku/bin:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+# Load $PATH
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
-
-# enable shims and autocompletion for rbenv
-# disabled because it prepends /Users/olivierlacan/.rbenv/shims
-# and I need ./bin to be first for implicit Bundler-powered gemsets
-# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+eval "$(rbenv init -)"
 
 # enable autojump (j dirname | jumpstats)
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+
+# alias git to hub
+eval "$(hub alias -s)"
 
 # load variables I don't want everybody to see when they look at my bash_profile
 if [ -f ~/.bash_variables ]; then
@@ -72,14 +67,5 @@ fi
 NORMAL="\[\033[0m\]"
 export PS1='in \[$(tput setaf 6)\]$(__current_path)$(__branch_if_repo) \n\[$(tput setaf 3)\]\[\033[0;00m\]\$ '
 
-# Chad Miller made me do this, it's pretty cool
-# Displays the current user@hostname and PWD in the terminal title (or tab)
-# TODO: output the currently running script before this
-# PROMPT_COMMAND='echo -ne "\033]0;$(__current_path)\007"'
-
-# SCM breeze
-[ -s "/Users/olivierlacan/.scm_breeze/scm_breeze.sh" ] && source "/Users/olivierlacan/.scm_breeze/scm_breeze.sh"
-
 # Default editor
 export EDITOR="sublime -Wn"
-[[ -s /Users/olivierlacan/.nvm/nvm.sh ]] && . /Users/olivierlacan/.nvm/nvm.sh # This loads NVM
