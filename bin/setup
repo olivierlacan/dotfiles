@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # basic git config
-system("git config --global user.name 'Olivier Lacan')
+system("git config --global user.name 'Olivier Lacan'")
 system("git config --global user.email hi@olivierlacan.com")
 
 # setup git to use osxkeychain as the credential helper so 
