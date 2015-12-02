@@ -68,4 +68,4 @@ NORMAL="\[\033[0m\]"
 export PS1='in \[$(tput setaf 6)\]$(__current_path)$(__branch_if_repo) \n\[$(tput setaf 3)\]\[\033[0;00m\]\$ '
 
 # Default editor
-export EDITOR="sublime -Wn"
+export EDITOR="sublime -w -n"
