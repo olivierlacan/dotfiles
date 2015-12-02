@@ -1,21 +1,24 @@
 #!/usr/bin/env ruby
 
 # basic git config
-s("git config --global user.name 'Olivier Lacan'")
-s("git config --global user.email hi@olivierlacan.com")
+x[ git config --global user.name 'Olivier Lacan' ]
+x[ git config --global user.email hi@olivierlacan.com ]
+x[ git config --global push.default simple ]
 
 # setup git to use osxkeychain as the credential helper so 
 # that it remembers GitHub credentials
-s("git config --global credential.helper osxkeychain")
+x[ git config --global credential.helper osxkeychain ]
 
 puts("Press Enter to continue...") 
-if s("git credential-osxkeychain get github.com") 
+if x[ git credential-osxkeychain get github.com ]
   puts "git is now authorized to look stuff up from Keychain!"
 else
   puts "something went to shit!"
 end
 
 x[ ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime ]
+
+
 
 private 
 
