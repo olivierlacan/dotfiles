@@ -3,7 +3,8 @@
 # setup git to use osxkeychain as the credential helper so 
 # that it remembers GitHub credentials
 system("git config --global credential.helper osxkeychain")
-if system("git credential-osxkeychain get github.com")
+
+if puts("Press Enter to continue...") && system("git credential-osxkeychain get github.com") 
   puts "git is now authorized to look stuff up from Keychain!"
 else
   puts "something went to shit!"
