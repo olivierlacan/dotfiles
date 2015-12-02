@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+
+
 # setup git to use osxkeychain as the credential helper so 
 # that it remembers GitHub credentials
 system("git config --global credential.helper osxkeychain")
