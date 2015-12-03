@@ -21,6 +21,12 @@ alias tower="gittower"
 # Xcode
 alias xcode="open *.xcodeproj"
 
+# Sublime
+alias s="sublime"
+
+# Atom
+alias a="atom"
+
 # Rails
 alias migrateback='rake -g rollback_branch_migrations[master]'
 
