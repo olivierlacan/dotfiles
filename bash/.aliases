@@ -9,7 +9,19 @@ alias gpu="git push"
 alias gpr="git pull --rebase"
 alias gco="git checkout"
 alias blastschema="git checkout db/schema.rb"
-alias gitpurge="git checkout master && git remote update --prune | git branch -r --merged | grep -v master | sed -e 's/origin\//:/' | xargs git push origin"
+# switch to master branch, output list of branches that were merged into master,
+# filter out the current branch (denoted with a "*" in front of it), filter out
+# `master` branch as well for extra safety, then run git `branch -d branch-name`
+# on the list of branch which will only delete the branch locally if git finds
+# no new commits since it was merged into master
+alias gitlocalpurge="git checkout master && git branch --merged | grep -v "\*" | grep -v master | xargs -n 1 git branch -d"
+# switch to master branch, update list of remote branches, output list of
+# branches that were merged into current (master) branch, then filter out
+# `master`, `production`, and `staging` which we don't want to automatically
+# delete ever, then remove the "origin/" portion of the remote branch name,
+# and finally run `git push origin :branch-name` on every remaining branch in
+# the list which will delete them on the origin remote
+alias gitremotepurge="git checkout master && git remote update --prune | git branch -r --merged | grep -Ev "master|staging|production" | sed -e 's/origin\//:/' | xargs git push origin"
 alias gittags="for t in `git tag -l`; do git cat-file -p `git rev-parse $t`; done"
 
 # Bundler
