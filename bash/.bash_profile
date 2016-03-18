@@ -17,8 +17,8 @@ if [ -f ~/.bash_variables ]; then
 fi
 
 # load aliases
-if [ -f ~/.bash_aliases ]; then
-  source ~/.bash_aliases
+if [ -f ~/.aliases ]; then
+  source ~/.aliases
 fi
 
 # load colors
