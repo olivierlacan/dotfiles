@@ -2,7 +2,7 @@
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+. $(brew --prefix nvm)/nvm.sh
 eval "$(rbenv init -)"
 
 # enable autojump (j dirname | jumpstats)
