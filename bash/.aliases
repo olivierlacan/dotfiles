@@ -21,7 +21,7 @@ alias gitlocalpurge="git checkout master && git branch --merged | grep -v "\*" |
 # delete ever, then remove the "origin/" portion of the remote branch name,
 # and finally run `git push origin :branch-name` on every remaining branch in
 # the list which will delete them on the origin remote
-alias gitremotepurge="git checkout master && git remote update --prune | git branch -r --merged | grep -Ev "master|staging|production" | sed -e 's/origin\//:/' | xargs git push origin"
+alias gitremotepurge="git checkout master && git remote update --prune | git branch -r --merged | grep -Ev 'master|staging|production' | sed -e 's/origin\//:/' | xargs git push origin"
 alias gittags="for t in `git tag -l`; do git cat-file -p `git rev-parse $t`; done"
 
 # Bundler

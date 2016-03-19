@@ -31,7 +31,7 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # Git Autocompletion
-source /usr/local/etc/bash_completion.d/git-completion.bash 
+source /usr/local/etc/bash_completion.d/git-completion.bash
 source /usr/local/etc/bash_completion.d/hub.bash_completion.sh
 
 # prompt with ruby version
