@@ -14,7 +14,7 @@ alias blastschema="git checkout db/schema.rb"
 # `master` branch as well for extra safety, then run git `branch -d branch-name`
 # on the list of branch which will only delete the branch locally if git finds
 # no new commits since it was merged into master
-alias gitlocalpurge="git checkout master && git branch --merged | grep -v "\*" | grep -v master | xargs -n 1 git branch -d"
+alias gitlocalpurge="git checkout master && git branch --merged | grep -v "\*" | grep -v master | xargs git branch -d"
 # switch to master branch, update list of remote branches, output list of
 # branches that were merged into current (master) branch, then filter out
 # `master`, `production`, and `staging` which we don't want to automatically
