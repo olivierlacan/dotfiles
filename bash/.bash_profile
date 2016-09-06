@@ -1,9 +1,13 @@
 # Load $PATH
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+
+# rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
-export NVM_DIR=~/.nvm
-. $(brew --prefix nvm)/nvm.sh
 eval "$(rbenv init -)"
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # enable autojump (j dirname | jumpstats)
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
