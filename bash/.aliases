@@ -1,3 +1,8 @@
+# Bash
+alias list="ls -l"
+alias devlog="tail -f log/development.log"
+alias testlog="tail -f log/development.log"
+
 # Git
 alias gc="git commit"
 alias gs="git status"
