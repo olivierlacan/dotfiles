@@ -14,6 +14,7 @@ alias gp="git pull"
 alias gpu="git push"
 alias gpr="git pull --rebase"
 alias gco="git checkout"
+alias gfo="git fetch origin"
 alias blastschema="git checkout db/schema.rb"
 # switch to master branch, output list of branches that were merged into master,
 # filter out the current branch (denoted with a "*" in front of it), filter out
@@ -39,8 +40,9 @@ alias tower="gittower"
 # Xcode
 alias xcode="open *.xcodeproj"
 
-# Sublime
+# sublime
 alias s="sublime"
+alias smod='sublime `git diff --name-only HEAD`'
 
 # Atom
 alias a="atom"
