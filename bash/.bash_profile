@@ -1,9 +1,21 @@
-# Load $PATH
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+# sbin path for Homebrew
+export PATH="/usr/local/sbin:$PATH"
+
+# rbenv binaries
+export PATH="$HOME/.rbenv/bin:$PATH"
+# nvm
+export NVM_DIR=~/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# nvm-auto-switch
+. `brew --prefix`/opt/nvm-auto-switch/nvm-auto-switch.sh
 
 # rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
