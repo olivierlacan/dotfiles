@@ -1,0 +1,68 @@
+{
+	"always_show_minimap_viewport": false,
+	"binary_file_patterns":
+	[
+		".svn",
+		".git",
+		".hg",
+		"CVS",
+		".bundle",
+		"vendor/cache",
+		"tmp",
+		"tmp/cache/sass",
+		"coverage",
+		"node_modules/",
+		"app/assets/javascripts/vendor",
+		"app/assets/vendor",
+		"venv",
+		"app/assets/javascripts/projects.js",
+		"bower_components/",
+		"tmp/cache",
+		"public/css/application.css"
+	],
+	"color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
+	"draw_minimap_border": false,
+	"ensure_newline_at_eof_on_save": true,
+	"file_exclude_patterns":
+	[
+		"*.pyc",
+		"*.pyo",
+		"*.exe",
+		"*.dll",
+		"*.obj",
+		"*.o",
+		"*.a",
+		"*.lib",
+		"*.so",
+		"*.dylib",
+		"*.ncb",
+		"*.sdf",
+		"*.suo",
+		"*.pdb",
+		"*.idb",
+		".DS_Store",
+		"*.class",
+		"*.psd",
+		"*.db",
+		".scssc",
+		".css.sassc",
+		".log"
+	],
+	"font_face": "Mononoki",
+	"font_size": 17,
+	"ignored_packages":
+	[
+	],
+	"line_padding_bottom": 1,
+	"line_padding_top": 1,
+	"reveal-on-activate": true,
+	"rulers":
+	[
+		80
+	],
+	"tab_size": 2,
+	"theme": "Solarized Space Dark.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": false,
+	"use_tab_stops": true
+}
