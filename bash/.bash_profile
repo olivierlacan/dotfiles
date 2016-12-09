@@ -3,9 +3,15 @@ export PATH="/usr/local/sbin:$PATH"
 
 # rbenv binaries
 export PATH="$HOME/.rbenv/bin:$PATH"
+
+# Qt5 & Capybara Webkit
+export PATH=$HOME/Qt5.5.1/5.5/clang_64/bin:$PATH
+
 # nvm
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+
 
 # nvm-auto-switch
 . `brew --prefix`/opt/nvm-auto-switch/nvm-auto-switch.sh
