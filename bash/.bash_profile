@@ -11,7 +11,8 @@ export PATH=$HOME/Qt5.5.1/5.5/clang_64/bin:$PATH
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
-
+# Yarn
+export PATH="$PATH:$HOME/.yarn/bin"
 
 # nvm-auto-switch
 . `brew --prefix`/opt/nvm-auto-switch/nvm-auto-switch.sh
