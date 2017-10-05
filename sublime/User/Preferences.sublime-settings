@@ -8,17 +8,20 @@
 		"CVS",
 		".bundle",
 		"vendor/cache",
-		"tmp",
-		"tmp/cache/sass",
+		"tmp/",
 		"coverage",
 		"node_modules/",
 		"app/assets/javascripts/vendor",
-		"app/assets/vendor",
+		"app/assets/vendor/",
 		"venv",
 		"app/assets/javascripts/projects.js",
 		"bower_components/",
-		"tmp/cache",
-		"public/css/application.css"
+		"public/css/application.css",
+		"doc/",
+		"coverage/",
+		"app/assets/fonts",
+		".byebug_history",
+		".rubocop_todo.yml"
 	],
 	"color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
 	"draw_minimap_border": false,
@@ -49,7 +52,7 @@
 		".log"
 	],
 	"font_face": "Mononoki",
-	"font_size": 17,
+	"font_size": 15,
 	"ignored_packages":
 	[
 	],
@@ -58,11 +61,13 @@
 	"reveal-on-activate": true,
 	"rulers":
 	[
+		72,
 		80
 	],
+	"show_encoding": true,
 	"tab_size": 2,
-	"theme": "Solarized Space Dark.sublime-theme",
+	"theme": "Piatto Dark.sublime-theme",
 	"translate_tabs_to_spaces": true,
-	"trim_trailing_white_space_on_save": false,
+	"trim_trailing_white_space_on_save": true,
 	"use_tab_stops": true
 }

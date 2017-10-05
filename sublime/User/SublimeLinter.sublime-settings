@@ -1,0 +1,11 @@
+{
+    "user": {
+        "linters": {
+            "ruby": {
+                "@disable": false,
+                "args": [],
+                "excludes": []
+            }
+        }
+    }
+}
