@@ -56,6 +56,11 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 source /usr/local/etc/bash_completion.d/git-completion.bash
 source /usr/local/etc/bash_completion.d/hub.bash_completion.sh
 
+# Bash completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+. $(brew --prefix)/etc/bash_completion
+fi
+
 # prompt with ruby version
 # rbenv version | sed -e 's/ .*//'
 __rbenv_ps1 (){
