@@ -5,53 +5,66 @@ def git_clone(url, path)
 end
 
 # Homebrew
+puts "Installing Homebrew..."
 %x[ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" ]
 
 # Directories
+puts "Creating ~/Development/ directories..."
+%x[ mkdir -p ~/Development/ ]
 %x[ mkdir -p ~/Development/oss ]
 %x[ mkdir -p ~/Development/perso ]
 
 # Repos
+puts "Cloning GitHub repos..."
 git_clone(*%W[ https://github.com/olivierlacan/olivierlacan.com.git ~/Development/perso/olivierlacan.com/ ])
 git_clone(*%W[ https://github.com/olivierlacan/rubygems.org.git ~/Development/oss/rubygems.org/ ])
 git_clone(*%W[ https://github.com/badges/shields.git ~/Development/oss/shields/ ])
 
 # Symlink .bash_profile
+puts "Symlinking .bash_profile & .bash_aliases..."
 %x[ ln -s ~/.dotfiles/bash/.bash_profile ~/.bash_profile ]
 %x[ ln -s ~/.dotfiles/bash/.bash_aliases ~/.bash_aliases ]
 
-
 # Symlink Brewfile
+puts "Symlinking Brewfile..."
 %x[ ln -s ~/.dotfiles/Brewfile ~/Brewfile ]
 
 # Brewfile
+puts "Running Homebrew Bundle..."
 %x[ cd ]
 %x[ brew tap homebrew/bundle ]
 %x[ brew bundle ]
 
 # PostgreSQL
-%x[ ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents ]
-%x[ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist ]
+puts "Adding PostgreSQL to Homebrew services..."
+%x[ brew services start postgresql ]
 
 # rbenv
+puts "Cloning rbenv, ruby-build, and rbenv-default-gems..."
 git_clone(*%W[ https://github.com/rbenv/rbenv.git ~/.rbenv ])
 git_clone(*%W[ https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build ])
 git_clone(*%W[ https://github.com/rbenv/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems])
+
+puts "Adding Bundler to default Ruby gems..."
 %x[ echo bundler > ~/.rbenv/default-gems ]
 
 # Reload Profile
+puts "Reloading .bash_profile..."
 %x[ source ~/.bash_profile ]
 
+puts "Installing Ruby 2.4.0 and setting it as global Ruby version..."
 %x[ rbenv install --skip-existing 2.4.0 ]
 %x[ rbenv global 2.4.0 ]
 
 # basic git config
+puts "Configuring Git with basic user settings..."
 %x[ git config --global user.name 'Olivier Lacan' ]
 %x[ git config --global user.email hi@olivierlacan.com ]
 %x[ git config --global push.default simple ]
 
 # setup git to use osxkeychain as the credential helper so 
 # that it remembers GitHub credentials
+puts "Configuring Git to use Keychain..."
 %x[ git config --global credential.helper osxkeychain ]
 
 puts("Press Enter to continue...") 
@@ -68,6 +81,7 @@ end
 %x[ echo 'gem: --no-document' >> ~/.gemrc ]
 
 # Bundler
+puts "Configuring Bundler jobs to match available CPU cores..."
 cores = (%x[ sysctl -n hw.ncpu ].to_i) - 1
 %x[ bundle config --global jobs #{cores} ]
 
