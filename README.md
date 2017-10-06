@@ -16,3 +16,10 @@ to load a fucking directory.
 
 Bisous,
 Olivier.
+
+## Installation
+
+This is for me as much as it is for you. 
+
+- `git clone https://github.com/olivierlacan/dotfiles.git ~/.dotfiles`
+- `bin/setup`
