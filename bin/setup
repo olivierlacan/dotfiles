@@ -29,9 +29,9 @@ git_clone(*%W[ https://github.com/olivierlacan/rubygems.org.git ~/Development/os
 git_clone(*%W[ https://github.com/badges/shields.git ~/Development/oss/shields/ ])
 
 # Symlink .bash_profile
-puts "Symlinking .bash_profile & .bash_aliases..."
+puts "Symlinking .bash_profile & .aliases..."
 %x[ ln -s ~/.dotfiles/bash/.bash_profile ~/.bash_profile ]
-%x[ ln -s ~/.dotfiles/bash/.bash_aliases ~/.bash_aliases ]
+%x[ ln -s ~/.dotfiles/bash/.aliases ~/.aliases ]
 
 # Symlink Brewfile
 puts "Symlinking Brewfile..."
