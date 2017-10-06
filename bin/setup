@@ -8,24 +8,21 @@ end
 %x[ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" ]
 
 # Directories
-%x[ mkdir -p /Users/olivierlacan/Development/oss ]
-%x[ mkdir -p /Users/olivierlacan/Development/perso ]
+%x[ mkdir -p ~/Development/oss ]
+%x[ mkdir -p ~/Development/perso ]
 
 # Repos
-git_clone(*%W[ https://github.com/olivierlacan/olivierlacan.com.git /Users/olivierlacan/Development/perso/olivierlacan.com/ ])
-git_clone(*%W[ https://github.com/olivierlacan/rubygems.org.git /Users/olivierlacan/Development/oss/rubygems.org/ ])
-git_clone(*%W[ https://github.com/badges/shields.git /Users/olivierlacan/Development/oss/shields/ ])
-
-# Dotfiles
-git_clone(*%W[ https://github.com/olivierlacan/dotfiles.git /Users/olivierlacan/.dotfiles ])
+git_clone(*%W[ https://github.com/olivierlacan/olivierlacan.com.git ~/Development/perso/olivierlacan.com/ ])
+git_clone(*%W[ https://github.com/olivierlacan/rubygems.org.git ~/Development/oss/rubygems.org/ ])
+git_clone(*%W[ https://github.com/badges/shields.git ~/Development/oss/shields/ ])
 
 # Symlink .bash_profile
-%x[ ln -s /Users/olivierlacan/.dotfiles/bash/.bash_profile /Users/olivierlacan/.bash_profile ]
-%x[ ln -s /Users/olivierlacan/.dotfiles/bash/.bash_aliases /Users/olivierlacan/.bash_aliases ]
+%x[ ln -s ~/.dotfiles/bash/.bash_profile ~/.bash_profile ]
+%x[ ln -s ~/.dotfiles/bash/.bash_aliases ~/.bash_aliases ]
 
 
 # Symlink Brewfile
-%x[ ln -s /Users/olivierlacan/.dotfiles/Brewfile /Users/olivierlacan/Brewfile ]
+%x[ ln -s ~/.dotfiles/Brewfile ~/Brewfile ]
 
 # Brewfile
 %x[ cd ]
@@ -33,20 +30,20 @@ git_clone(*%W[ https://github.com/olivierlacan/dotfiles.git /Users/olivierlacan/
 %x[ brew bundle ]
 
 # PostgreSQL
-%x[ ln -sfv /usr/local/opt/postgresql/*.plist /Users/olivierlacan/Library/LaunchAgents ]
-%x[ launchctl load /Users/olivierlacan/Library/LaunchAgents/homebrew.mxcl.postgresql.plist ]
+%x[ ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents ]
+%x[ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist ]
 
 # rbenv
-git_clone(*%W[ https://github.com/rbenv/rbenv.git /Users/olivierlacan/.rbenv ])
-git_clone(*%W[ https://github.com/rbenv/ruby-build.git /Users/olivierlacan/.rbenv/plugins/ruby-build ])
-git_clone(*%W[ https://github.com/rbenv/rbenv-default-gems.git /Users/olivierlacan/.rbenv/plugins/rbenv-default-gems])
-%x[ echo bundler > /Users/olivierlacan/.rbenv/default-gems ]
+git_clone(*%W[ https://github.com/rbenv/rbenv.git ~/.rbenv ])
+git_clone(*%W[ https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build ])
+git_clone(*%W[ https://github.com/rbenv/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems])
+%x[ echo bundler > ~/.rbenv/default-gems ]
 
 # Reload Profile
-%x[ source /Users/olivierlacan/.bash_profile ]
+%x[ source ~/.bash_profile ]
 
-%x[ rbenv install --skip-existing 2.2.3 ]
-%x[ rbenv global 2.2.3 ]
+%x[ rbenv install --skip-existing 2.4.0 ]
+%x[ rbenv global 2.4.0 ]
 
 # basic git config
 %x[ git config --global user.name 'Olivier Lacan' ]
@@ -68,7 +65,7 @@ end
 
 # RubyGems
 %x[ gem update --system ]
-%x[ echo 'gem: --no-document' >> /Users/olivierlacan/.gemrc ]
+%x[ echo 'gem: --no-document' >> ~/.gemrc ]
 
 # Bundler
 cores = (%x[ sysctl -n hw.ncpu ].to_i) - 1
