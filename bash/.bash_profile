@@ -14,9 +14,6 @@ export NVM_DIR=~/.nvm
 # Yarn
 export PATH="$PATH:$HOME/.yarn/bin"
 
-# nvm-auto-switch
-. `brew --prefix`/opt/nvm-auto-switch/nvm-auto-switch.sh
-
 # rbenv
 eval "$(rbenv init -)"
 # pyenv
