@@ -54,7 +54,6 @@ git_clone(*%W[ https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-bui
 git_clone(*%W[ https://github.com/rbenv/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems])
 
 # pyenv
-
 puts "Cloning pyenv..."
 git_clone(*%W[ https://github.com/pyenv/pyenv.git ~/.pyenv ])
 
