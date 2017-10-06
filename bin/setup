@@ -53,6 +53,11 @@ git_clone(*%W[ https://github.com/rbenv/rbenv.git ~/.rbenv ])
 git_clone(*%W[ https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build ])
 git_clone(*%W[ https://github.com/rbenv/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems])
 
+# pyenv
+
+puts "Cloning pyenv..."
+git_clone(*W[ https://github.com/pyenv/pyenv.git ~/.pyenv ])
+
 puts "Adding Bundler to default Ruby gems..."
 %x[ echo bundler > ~/.rbenv/default-gems ]
 
