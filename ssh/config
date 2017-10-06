@@ -1,0 +1,8 @@
+# macOS Sierra (10.12.2) and later don't automatically 
+# load the id_rsa key which can be stored into Keychain
+# so we have to tell the ssh agent to add it and use 
+# Keychain.
+Host *
+ AddKeysToAgent yes
+ UseKeychain yes
+ IdentityFile ~/.ssh/id_rsa
