@@ -22,4 +22,5 @@ Olivier.
 This is for me as much as it is for you. 
 
 - `git clone https://github.com/olivierlacan/dotfiles.git ~/.dotfiles`
+- `cd ~/.dotfiles`
 - `bin/setup`
