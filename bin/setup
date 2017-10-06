@@ -5,8 +5,12 @@ def git_clone(url, path)
 end
 
 # Homebrew
-puts "Installing Homebrew..."
-%x[ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" ]
+if s("which brew")
+  puts "Homebrew is already installed!"
+else
+  puts "Installing Homebrew..."
+  %x[ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" ]
+end
 
 # Directories
 puts "Creating ~/Development/ directories..."
