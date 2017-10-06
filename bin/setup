@@ -4,6 +4,10 @@ def git_clone(url, path)
   %x[ git -C #{path} pull || git clone #{url} #{path} ]
 end
 
+def s(arguments)
+  system(arguments)
+end
+
 # Homebrew
 if s("which brew")
   puts "Homebrew is already installed!"
@@ -88,9 +92,3 @@ end
 puts "Configuring Bundler jobs to match available CPU cores..."
 cores = (%x[ sysctl -n hw.ncpu ].to_i) - 1
 %x[ bundle config --global jobs #{cores} ]
-
-private 
-
-def s(arguments)
-  system(arguments)
-end
