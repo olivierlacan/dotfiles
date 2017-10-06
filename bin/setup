@@ -96,3 +96,5 @@ end
 puts "Configuring Bundler jobs to match available CPU cores..."
 cores = (%x[ sysctl -n hw.ncpu ].to_i) - 1
 %x[ bundle config --global jobs #{cores} ]
+
+puts "All done!"
