@@ -4,9 +4,6 @@ export PATH="/usr/local/sbin:$PATH"
 # rbenv binaries
 export PATH="$HOME/.rbenv/bin:$PATH"
 
-# Qt5 & Capybara Webkit
-export PATH=$HOME/Qt5.5.1/5.5/clang_64/bin:$PATH
-
 # nvm
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
@@ -38,17 +35,17 @@ eval "$(hub alias -s)"
 
 # load variables I don't want everybody to see when they look at my bash_profile
 if [ -f ~/.bash_variables ]; then
-  source ~/.bash_variables
+  . ~/.bash_variables
 fi
 
 # load aliases
 if [ -f ~/.aliases ]; then
-  source ~/.aliases
+  . ~/.aliases
 fi
 
 # load colors
 if [ -f ~/.bash_colors ]; then
-  source ~/.bash_colors
+  . ~/.bash_colors
 fi
 
 # pretty colors
@@ -56,8 +53,8 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # Git Autocompletion
-source /usr/local/etc/bash_completion.d/git-completion.bash
-source /usr/local/etc/bash_completion.d/hub.bash_completion.sh
+. /usr/local/etc/bash_completion.d/git-completion.bash
+. /usr/local/etc/bash_completion.d/hub.bash_completion.sh
 
 # Bash completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -114,4 +111,5 @@ export HISTFILE=~/.bash_eternal_history
 # Force prompt to write history after every command.
 # http://superuser.com/questions/20900/bash-history-loss
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
-export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
+
+export PATH="$(brew --prefix qt@5.5)/bin:$PATH"
