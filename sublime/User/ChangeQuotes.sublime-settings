@@ -1,8 +1,0 @@
-{
-  "debug": true,
-  "lists": {
-    "default": {
-      "quotes": [["'", "\""]]
-    }
-  }
-}
