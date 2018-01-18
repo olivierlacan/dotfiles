@@ -80,7 +80,7 @@ __current_git_user (){
 }
 
 __current_path (){
-  echo $(basename `pwd`)
+  echo $(basename "`pwd`")
 }
 
 # http://en.wikipedia.org/wiki/Tput#Usage for color codes
