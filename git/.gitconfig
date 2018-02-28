@@ -1,0 +1,51 @@
+[user]
+	name = Olivier Lacan
+	email = hi@olivierlacan.com
+  signingkey = 1FF9AF6D
+[push]
+	default = simple
+[credential]
+	helper = osxkeychain
+[url "https://github.com/"]
+  insteadOf = git://github.com/
+[gpg]
+  program = /usr/local/bin/gpg
+[diff]
+  compactionHeuristic = true
+[merge]
+	tool = opendiff
+[core]
+  excludesfile = ~/.gitignore
+[commit]
+  template = ~/.gitmessage
+[alias]
+  # one-line log
+  l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+
+  c = commit
+  s = status
+  r = remote
+  b = branch
+  br = branch --sort=-committerdate
+  bd = branch -D
+  m = merge
+  p = pull
+  pu = push
+  pr = pull --rebase
+  co = checkout
+  fo = fetch origin
+
+  # Git
+  blastschema = !git checkout db/schema.rb
+
+  localpurge = "!git branch --merged | grep -v \"\\*\" | grep -v master | xargs git branch -d"
+
+# switch to master branch, update list of remote branches, output list of
+# branches that were merged into current (master) branch, then filter out
+# `master`, `production`, and `staging` which we don't want to automatically
+# delete ever, then remove the "origin/" portion of the remote branch name,
+# and finally run `git push origin :branch-name` on every remaining branch in
+# the list which will delete them on the origin remote
+
+  remotepurge = "!git checkout master && git remote update --prune | git branch -r --merged | grep -Ev \"master|staging|production\" | sed -e \"s/origin\\//:/\" | xargs git push origin"
+  tags = "!for t in `git tag -l`; do git cat-file -p `git rev-parse $t`; done"
