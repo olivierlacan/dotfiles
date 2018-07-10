@@ -38,3 +38,6 @@ alias migrateback='rake -g rollback_branch_migrations[master]'
 if [ -f ~/.bash_secret_aliases ]; then
   source ~/.bash_secret_aliases
 fi
+
+# Hub
+eval "$(hub alias -s)"
