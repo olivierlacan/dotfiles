@@ -49,3 +49,5 @@
 
   remotepurge = "!git checkout master && git remote update --prune | git branch -r --merged | grep -Ev \"master|staging|production\" | sed -e \"s/origin\\//:/\" | xargs git push origin"
   tags = "!for t in `git tag -l`; do git cat-file -p `git rev-parse $t`; done"
+[rebase]
+	autoStash = true
