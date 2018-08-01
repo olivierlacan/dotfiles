@@ -26,6 +26,8 @@
   c = commit
   ca = commit --amend
   can = commit --amend --no-edit
+  d = diff
+  ds = diff --staged
   s = status
   r = remote
   b = branch
