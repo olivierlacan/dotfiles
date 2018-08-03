@@ -36,6 +36,7 @@
   m = merge
   p = pull
   pu = push
+  puf = push --force-with-lease
   pr = pull --rebase
   co = checkout
   fo = fetch origin
