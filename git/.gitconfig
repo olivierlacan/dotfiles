@@ -57,5 +57,6 @@
   tags = "!for t in `git tag -l`; do git cat-file -p `git rev-parse $t`; done"
 [rebase]
 	autoStash = true
+  instructionFormat = "%s [%an]"
 [rerere]
   enabled = true
