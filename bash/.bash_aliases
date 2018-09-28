@@ -9,7 +9,7 @@ function_exists() {
     return $?
 }
 
-for al in `__git_aliases`; do
+for al in `git config -l | grep '^alias\.' | cut -d'=' -f1 | cut -d'.' -f2`; do
   alias g$al="git $al"
 
   complete_func=_git_$(__git_aliased_command $al)
