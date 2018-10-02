@@ -41,3 +41,6 @@ fi
 
 # Hub
 eval "$(hub alias -s)"
+
+# Force Postgres to release its process ID
+alias killpg='rm /usr/local/var/postgres/postmaster.pid'
