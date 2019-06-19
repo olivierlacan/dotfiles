@@ -77,3 +77,6 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
+
+# Homebrew is a pain in the ass with the constant forced updates
+export HOMEBREW_AUTO_UPDATE_SECS=600000
