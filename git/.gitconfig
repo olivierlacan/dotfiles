@@ -57,3 +57,8 @@
   tags = "!for t in `git tag -l`; do git cat-file -p `git rev-parse $t`; done"
 [rebase]
 	autoStash = true
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
