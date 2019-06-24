@@ -51,4 +51,22 @@ fi
 # Hub
 eval "$(hub alias -s)"
 
+# Force Postgres to release its process ID
+alias killpg='rm /usr/local/var/postgres/postmaster.pid'
 
+# Jump to blog
+alias blog='j olivierlacan.com'
+
+port() {
+  sudo lsof -i"TCP:$1" -sTCP:LISTEN -n -P
+}
+
+flushdns() {
+  echo "Running dscacheutil -flushcache and restarting mDNSResponder..."
+  sudo dscacheutil -flushcache
+  sudo killall -HUP mDNSResponder
+}
+
+gpgs () { echo -n "$1" | gpg --armor --encrypt -r $2 --trust-model always; }
+
+alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
