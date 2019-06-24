@@ -16,6 +16,7 @@
 	tool = opendiff
 [core]
   excludesfile = ~/.gitignore
+	editor = sublime -w -n
 [commit]
   template = ~/.gitmessage
 [alias]
@@ -23,25 +24,40 @@
   l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
 
   a = add
+
   c = commit
   ca = commit --amend
+  cv = commit --verbose
+  cs = commit --gpg-sign
   can = commit --amend --no-edit
   cv = commit --verbose
+
   d = diff
   ds = diff --staged
+
   s = status
   r = remote
+  rr = remote rename
+
   b = branch
   br = branch --sort=-committerdate
   bd = branch -D
+
   m = merge
+
   p = pull
   pu = push
   puf = push --force-with-lease
   rb = pull --rebase
   rh = reset --hard
+
+  rum = rebase upstream/master
+  ri = rebase --interactive
+
   co = checkout
+
   fo = fetch origin
+  fu = fetch upstream
 
   # Git
   blastschema = !git checkout db/schema.rb
@@ -57,6 +73,7 @@
 
   remotepurge = "!git checkout master && git remote update --prune | git branch -r --merged | grep -Ev \"master|staging|production\" | sed -e \"s/origin\\//:/\" | xargs git push origin"
   tags = "!for t in `git tag -l`; do git cat-file -p `git rev-parse $t`; done"
+	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
 [rebase]
 	autoStash = true
   instructionFormat = "%s [%an]"
@@ -69,3 +86,8 @@
   enabled = true
 [pull]
 	default = current
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
