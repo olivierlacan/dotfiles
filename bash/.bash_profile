@@ -94,3 +94,6 @@ fi
 
 # Homebrew is a pain in the ass with the constant forced updates
 export HOMEBREW_AUTO_UPDATE_SECS=600000
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
