@@ -67,6 +67,30 @@ flushdns() {
   sudo killall -HUP mDNSResponder
 }
 
+rewritehistory() {
+  if [[ $# -eq 0 ]]
+  then
+    echo 'You need to provide an argument to `rewritehistory` so it can be removed from the history.'
+    return 1
+  else
+    read -r -p "About to delete all items from history that match \"$1\". Are you sure? [y/N] " response
+    if [[ $response =~ ^(yes|y)$ ]]
+    then
+      echo "Removing \"$1\" from history..."
+      # Delete all matched items from the file, and copy it to a temp location.
+      grep -v $1 "$HISTFILE" > /tmp/history
+      # Overwrite the actual history file with the temp one.
+      mv /tmp/history "$HISTFILE"
+      # Clear all items in the current sessions history (in memory).
+      history -c
+      # Reload history
+      history -r
+    else
+      echo "Cancelled."
+    fi
+  fi
+}
+
 gpgs () { echo -n "$1" | gpg --armor --encrypt -r $2 --trust-model always; }
 
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
