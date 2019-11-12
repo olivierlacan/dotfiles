@@ -1,14 +1,14 @@
-# Bash
-alias list="ls -l"
-alias devlog="tail -f log/development.log"
-alias testlog="tail -f log/development.log"
+#!/usr/bin/env bash
+# Aliases
 
 # https://gist.github.com/mwhite/6887990
 function_exists() {
-    declare -f -F $1 > /dev/null
-    return $?
+  declare -f -F $1 > /dev/null
+  return $?
 }
 
+# generate extra short git aliases based on git config aliases
+# `git l` for log becomes `gl`
 for al in `git config -l | grep '^alias\.' | cut -d'=' -f1 | cut -d'.' -f2`; do
   alias g$al="git $al"
 
@@ -16,24 +16,33 @@ for al in `git config -l | grep '^alias\.' | cut -d'=' -f1 | cut -d'.' -f2`; do
   function_exists $complete_fnc && __git_complete g$al $complete_func
 done
 
-# Bundler
-alias be="bundle exec"
+# Create a map of aliases so they can be all created in one fell swoop and set
+# to autocomplete.
+declare -A \
+aliases=(
+  ["list"]="ls -l"
+  ["devlog"]="tail -f log/development.log"
+  ["testlog"]="tail -f log/development.log"
+  ["be"]="bundle exec"
+  ["tower"]="gittower"
+  ["xcode"]="open *.xcodeproj"
+  ["s"]="sublime"
+  ["smod"]="sublime `git diff --name-only HEAD`"
+  ["a"]="atom"
+  ["vs"]="code"
+  ["migrateback"]="rake -g rollback_branch_migrations[master]"
+  ["killpg"]="rm /usr/local/var/postgres/postmaster.pid"
+  ["dup"]="docker-compose up -d"
+)
 
-# Git Tower
-alias tower="gittower"
-
-# Xcode
-alias xcode="open *.xcodeproj"
-
-# sublime
-alias s="sublime"
-alias smod='sublime `git diff --name-only HEAD`'
-
-# Atom
-alias a="atom"
-
-# Rails
-alias migrateback='rake -g rollback_branch_migrations[master]'
+for element in "${!aliases[@]}"
+do
+  value=${aliases[$element]}
+  # create alias from element to value
+  alias ${element}="${value}"
+  # add autocompletion to alias command name
+  # complete -c ${element}
+done
 
 if [ -f ~/.bash_secret_aliases ]; then
   source ~/.bash_secret_aliases
@@ -42,5 +51,4 @@ fi
 # Hub
 eval "$(hub alias -s)"
 
-# Force Postgres to release its process ID
-alias killpg='rm /usr/local/var/postgres/postmaster.pid'
+
