@@ -3,7 +3,7 @@
 	email = hi@olivierlacan.com
   signingkey = 1FF9AF6D
 [push]
-	default = simple
+	default = current
 [credential]
 	helper = osxkeychain
 [url "https://github.com/"]
@@ -67,3 +67,5 @@
 	process = git-lfs filter-process
 [rerere]
   enabled = true
+[pull]
+	default = current
