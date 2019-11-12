@@ -26,6 +26,7 @@
   c = commit
   ca = commit --amend
   can = commit --amend --no-edit
+  cv = commit --verbose
   d = diff
   ds = diff --staged
   s = status
@@ -37,7 +38,8 @@
   p = pull
   pu = push
   puf = push --force-with-lease
-  pr = pull --rebase
+  rb = pull --rebase
+  rh = reset --hard
   co = checkout
   fo = fetch origin
 
