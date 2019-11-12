@@ -64,6 +64,7 @@
   fu = fetch upstream
 
   sync = fetch origin && rebase origin/$HEAD
+  purge = rm --cached
 
   # Git
   blastschema = !git checkout db/schema.rb
