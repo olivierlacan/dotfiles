@@ -57,6 +57,7 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 # Postgres
 # pathprepend "/usr/local/opt/postgresql@10/bin"
 
+# Homebrew completion
 if type brew &>/dev/null; then
   HOMEBREW_PREFIX="$(brew --prefix)"
   if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
