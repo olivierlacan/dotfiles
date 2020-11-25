@@ -1,4 +1,21 @@
 # ==================== All modifications to $PATH ==================== #
+function path {
+  echo $PATH | tr ':' '\n'
+}
+
+function pathprepend {
+  case ":$PATH:" in
+    *":$1:"*) :;; # path entry is a duplicate
+    *) PATH="$1:$PATH";; # prepending to path
+  esac
+}
+
+function pathappend {
+  case ":$PATH:" in
+    *":$1:"*) :;; # path entry is a duplicate
+    *) PATH="$PATH:$1";; # appending to path
+  esac
+}
 
 # sbin path for Homebrew
 export PATH="/usr/local/sbin:$PATH"
