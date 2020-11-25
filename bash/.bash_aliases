@@ -94,3 +94,54 @@ rewritehistory() {
 gpgs () { echo -n "$1" | gpg --armor --encrypt -r $2 --trust-model always; }
 
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
+
+function time_since_last_commit() {
+  git log -1 --date=relative --format="%cd"
+}
+
+function g() {
+  if [[ $# > 0 ]]; then
+    git "$@"
+  else
+    echo "Last commit: $(time_since_last_commit) ago"
+    git status --short --branch
+  fi
+}
+
+function reload() {
+  echo "Reloading ~/.bash_profile ..."
+  . ~/.bash_profile
+}
+
+function update(){
+  git fetch origin
+  git rebase origin/master
+
+  if [ -e yarn.lock ]
+  then
+      echo "Yarn detected..."
+      yarn install
+  fi
+}
+
+function dockup () {
+  if [ -z "$1" ]
+  then
+    docker-compose up -d
+    docker-compose ps
+  else
+    echo "Running docker-compose up -d on $1";
+    docker-compose -f $1 up -d
+    docker-compose -f $1 ps
+  fi
+}
+
+function dockdown () {
+  if [ -z "$1" ]
+  then
+    docker-compose down
+  else
+    echo "Running docker-compose down on $1";
+    docker-compose -f $1 down
+  fi
+}
