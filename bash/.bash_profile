@@ -33,6 +33,13 @@ _ssh()
 }
 complete -F _ssh ssh
 
+# in a specified folder ($1) find all the files matching a file pattern
+# and sort them by line count
+sortlong()
+{
+  find "$1" -type f -name "$2" -exec wc -l {} + | sort -rn
+}
+
 # enable autojump (j dirname | jumpstats)
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
