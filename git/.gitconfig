@@ -12,18 +12,19 @@
   program = /usr/local/bin/gpg
 [diff]
   compactionHeuristic = true
-[merge]
-	tool = opendiff
+	guitool = ksdiff
+	tool = Kaleidoscope
 [core]
   excludesfile = ~/.gitignore
 	editor = sublime -w -n
 	attributesfile = /Users/olivierlacan/.gitattributes
+
 [commit]
   template = ~/.gitmessage
+
 [alias]
   # one-line log
   l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
-
   a = add
 
   bl = branch --sort=-committerdate
@@ -102,3 +103,14 @@
 	autosetupmerge = always
 [init]
 	defaultBranch = main
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[merge]
+	tool = Kaleidoscope
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+[mergetool]
+	prompt = false
