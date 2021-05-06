@@ -21,9 +21,10 @@
 		"coverage/",
 		"app/assets/fonts",
 		".byebug_history",
-		".rubocop_todo.yml"
+		".rubocop_todo.yml",
+		"log/**/*"
 	],
-	"color_scheme": "Packages/Color Scheme - Legacy/Solarized (Dark).tmTheme",
+	"color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
 	"draw_minimap_border": false,
 	"ensure_newline_at_eof_on_save": true,
 	"file_exclude_patterns":
@@ -49,12 +50,15 @@
 		"*.db",
 		".scssc",
 		".css.sassc",
-		".log"
+		"*.log",
+		"CHANGELOG.md",
+		"yarn.lock"
 	],
 	"font_face": "Mononoki",
-	"font_size": 15,
+	"font_size": 17,
 	"ignored_packages":
 	[
+		"TypeScript"
 	],
 	"line_padding_bottom": 1,
 	"line_padding_top": 1,
