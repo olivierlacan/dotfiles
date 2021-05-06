@@ -54,6 +54,8 @@
   puf = push --force-with-lease
   pup = push production
   rb = pull --rebase
+  rc = rebase --continue
+  ra = rebase --abort
   rh = reset --hard
 
   rum = "!f() { "rebase upstream/${1}" }; f"
