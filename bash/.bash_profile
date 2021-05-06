@@ -62,7 +62,7 @@ __rbenv_ps1 (){
 # prompt with ruby version
 # rbenv version | sed -e 's/ .*//'
 __current_git_branch (){
-  ref=$(/usr/local/bin/git symbolic-ref HEAD 2>/dev/null) || return
+  ref=$(git symbolic-ref HEAD 2>/dev/null) || return
   printf "${ref#refs/heads/}"
 }
 
@@ -76,7 +76,7 @@ __current_path (){
 
 # http://en.wikipedia.org/wiki/Tput#Usage for color codes
 __branch_if_repo (){
-if [ -f `which git` ] && [ -f `which rbenv` ] && [ -d ./.git ]; then
+if [ -f `which git` ] && [ -d ./.git ]; then
   printf "$(tput setaf 3) on $(tput setaf 2)$(__current_git_branch) $(tput setaf 3)as $(tput setaf 4)$(__current_git_user)"
 fi
 }
