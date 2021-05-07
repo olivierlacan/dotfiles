@@ -35,11 +35,15 @@ eval "$(rbenv init -)"
 #export GEM_PATH="$HOME/.gem/ruby/2.6.0"
 
 # Python version management with pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-pathprepend "$PYENV_ROOT/bin"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+if [[ -r "$HOME/.pyenv" ]]; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  pathprepend "$PYENV_ROOT/bin"
+  eval "$(pyenv init -)"
+  if [[ -r "$HOME/.pyenv/plugins/pyenv-virtualenv" ]]; then
+    eval "$(pyenv virtualenv-init -)"
+    export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+  fi;
+fi;
 
 # Node.js version management with nodenv
 # pathappend "$HOME/.nodenv/bin"
