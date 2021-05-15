@@ -32,9 +32,8 @@
 
   c = commit
   ca = commit --amend
-  cv = commit --verbose
-  cs = commit --gpg-sign
   can = commit --amend --no-edit
+  cs = commit --gpg-sign
   cv = commit --verbose
 
   d = diff
