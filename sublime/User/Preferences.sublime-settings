@@ -22,10 +22,15 @@
 		"app/assets/fonts",
 		".byebug_history",
 		".rubocop_todo.yml",
-		"log/**/*"
+		"log/**/*",
+		".yardoc/",
+		"production/static",
+		"dist/",
+		"log/projects-server/output.log"
 	],
-	"color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
+	"color_scheme": "Packages/Color Scheme - Default/Solarized (Light).tmTheme",
 	"draw_minimap_border": false,
+	"draw_white_space": "all",
 	"ensure_newline_at_eof_on_save": true,
 	"file_exclude_patterns":
 	[
@@ -52,10 +57,13 @@
 		".css.sassc",
 		"*.log",
 		"CHANGELOG.md",
-		"yarn.lock"
+		"yarn.lock",
+		".log",
+		"*.map"
 	],
 	"font_face": "Mononoki",
-	"font_size": 17,
+	"font_size": 18,
+	"ui_scale": 1.2,
 	"ignored_packages":
 	[
 		"TypeScript"
@@ -70,7 +78,7 @@
 	],
 	"show_encoding": true,
 	"tab_size": 2,
-	"theme": "Piatto Dark.sublime-theme",
+	"theme": "Piatto Light.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"use_tab_stops": true
