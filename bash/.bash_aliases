@@ -93,7 +93,6 @@ rewritehistory() {
 
 gpgs () { echo -n "$1" | gpg --armor --encrypt -r $2 --trust-model always; }
 
-<<<<<<< HEAD
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
 
 function time_since_last_commit() {
@@ -146,5 +145,3 @@ function dockdown () {
     docker-compose -f $1 down
   fi
 }
-=======
->>>>>>> Add gpgs command to sign with gpg

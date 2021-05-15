@@ -77,7 +77,6 @@ export PS1='in \[$(tput setaf 6)\]$(__current_path)$(__branch_if_repo) \n\[$(tpu
 
 # Default editor
 export EDITOR="sublime -w -n"
-# export EDITOR="atom -nw"
 
 # Eternal bash history
 # from: http://stackoverflow.com/a/19533853/385622
