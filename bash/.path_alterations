@@ -52,7 +52,6 @@ fi;
 # Composer for PHP
 # pathprepend "$HOME/.composer/vendor/bin"
 
-<<<<<<< HEAD
 # nvm for Node
 # -- Disabled in favor of Volta --
 # export NVM_DIR="$HOME/.nvm"
