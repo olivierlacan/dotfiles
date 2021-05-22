@@ -79,6 +79,11 @@ puts "Configuring Git with basic user settings..."
 %x[ git config --global user.email hi@olivierlacan.com ]
 %x[ git config --global push.default simple ]
 
+puts "Symlinking git configuration files..."
+%x[ ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig ]
+%x[ ln -s ~/.dotfiles/git/.gitmessage ~/.gitmessage ]
+%x[ ln -s ~/.dotfiles/git/.gitignore ~/.gitignore ]
+
 # setup git to use osxkeychain as the credential helper so 
 # that it remembers GitHub credentials
 puts "Configuring Git to use Keychain..."
