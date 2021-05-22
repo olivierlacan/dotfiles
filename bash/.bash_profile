@@ -25,7 +25,7 @@ if [ -f $(brew --prefix)/etc/bash_completion.d/git-completion.bash ]; then
 
   # Add git completion to aliases
   __git_complete gco _git_checkout
-  __git_complete gm __git_merge
+  __git_complete gm _git_merge
   __git_complete gp _git_pull
   __git_complete gpu _git_push
 fi
