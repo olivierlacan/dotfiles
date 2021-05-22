@@ -17,11 +17,14 @@ function pathappend {
   esac
 }
 
+# Custom binaries for me
+pathprepend "~/bin"
+
 # sbin path for Homebrew
 pathprepend "/usr/local/sbin"
 
 # Homebrew-installed OpenSSL
-# pathprepend "$(brew --prefix openssl)/bin"
+pathprepend "$(brew --prefix openssl)/bin"
 
 # Ruby version management with rbenv
 pathappend "$HOME/.rbenv/bin"
