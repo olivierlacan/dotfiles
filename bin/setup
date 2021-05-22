@@ -94,7 +94,6 @@ end
 
 # RubyGems
 %x[ gem update --system ]
-%x[ echo 'gem: --no-document' >> ~/.gemrc ]
 
 # Bundler
 puts "Configuring Bundler jobs to match available CPU cores..."
