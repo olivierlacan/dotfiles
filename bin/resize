@@ -1,0 +1,19 @@
+#!/bin/bash
+osascript <<EOD
+  tell application "System Events"
+    set dimensions to [1920, 1080]
+    set Safari to the front window of application process "Safari"
+    set Sublime to the front window of application process "Sublime Text"
+    set iTerm to the front window of application process "iTerm2"
+    
+    -- First attempt to make Sublime take up the full width and
+    -- height of the display. 
+    set position of Sublime to [0, 0]
+    set size of Sublime to dimensions
+    set position of Safari to [0, 0]
+    set size of Safari to dimensions
+    set position of iTerm to [0, 0]
+    set size of iTerm to dimensions
+    
+  end tell
+EOD
