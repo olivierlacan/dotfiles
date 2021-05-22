@@ -1,0 +1,8 @@
+# generate extra short git aliases based on git config aliases
+# `git l` for log becomes `gl`
+for git_alias in `git config -l | grep '^alias\.' | cut -d'=' -f1 | cut -d'.' -f2`; do
+  alias g$git_alias="git $git_alias"
+
+  complete_func=_git_$(__git_aliased_command $git_alias)
+  __git_complete g$git_alias $complete_func
+done
