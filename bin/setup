@@ -1,11 +1,52 @@
 #!/usr/bin/env ruby
 
-def git_clone(url, path)
-  %x[ git -C #{path} pull || git clone #{url} #{path} ]
-end
-
 def s(arguments)
   system(arguments)
+end
+
+def git_clone(url, path)
+  hub = s("command -v hub")
+
+  if hub
+    if directory_exists?(path)
+      puts "Repository directory #{path} already exists, pulling latest changes..."
+
+      %x[ git -C #{path} pull ]
+    else
+      puts "Repository directory #{path} doesn't exists, cloning..."
+
+      %x[ git clone #{url} #{path} ]
+    end
+  else
+    raise("hub is not installed, gotta do that first...")
+  end
+end
+
+def symlink(origin, destination, overwrite: false)
+  if File.exists?(destination.sub("~", Dir.home))
+    puts "There's already a file at #{destination}, skipping symlink..."
+    if overwrite
+      puts "Ovewriting existing symlink to #{destination} to #{origin}..."
+      %x[ ln -sf #{origin} #{destination} ]
+    end
+  else
+    puts "Symlinking #{destination} to #{origin}..."
+    %x[ ln -s #{origin} #{destination} ]
+  end
+end
+
+def directory_exists?(path)
+  s("[ -d #{path} ]")
+end
+
+def create_directory(path)
+  if directory_exists?(path)
+    puts "Directory #{path} already exists!"
+  else
+    puts "Creating #{path} directory..."
+
+    %x[ mkdir -p \"#{path}\" ]
+  end
 end
 
 # Homebrew
@@ -18,92 +59,102 @@ end
 
 # Directories
 puts "Creating ~/Development/ directories..."
-%x[ mkdir -p ~/Development/ ]
-%x[ mkdir -p ~/Development/oss ]
-%x[ mkdir -p ~/Development/perso ]
+
+create_directory("~/Development/")
+create_directory("~/Development/oss")
+create_directory("~/Development/perso")
 
 # Repos
 puts "Cloning GitHub repos..."
-git_clone(*%W[ https://github.com/olivierlacan/olivierlacan.com.git ~/Development/perso/olivierlacan.com/ ])
-git_clone(*%W[ https://github.com/olivierlacan/rubygems.org.git ~/Development/oss/rubygems.org/ ])
-git_clone(*%W[ https://github.com/badges/shields.git ~/Development/oss/shields/ ])
+
+git_clone(*%W[ olivierlacan/olivierlacan.com ~/Development/perso/olivierlacan.com ])
+git_clone(*%W[ olivierlacan/rubygems.org ~/Development/oss/rubygems.org ])
+git_clone(*%W[ badges/shields ~/Development/oss/shields ])
 
 # Symlink .bash_profile
 puts "Symlinking Bash config files and friends..."
-%x[ ln -s ~/.dotfiles/bash/.bash_profile ~/.bash_profile ]
-%x[ ln -s ~/.dotfiles/bash/.path_alterations ~/.path_alterations ]
-%x[ ln -s ~/.dotfiles/bash/.bash_aliases ~/.bash_aliases ]
-%x[ ln -s ~/.dotfiles/bash/.bashrc ~/.bashrc ]
-%x[ ln -s ~/.dotfiles/bash/.hushlogin ~/.hushlogin ]
-%x[ ln -s ~/.dotfiles/bash/.profile ~/.profile ]
+
+symlink("~/.dotfiles/bash/.bash_profile", "~/.bash_profile")
+symlink("~/.dotfiles/bash/.path_alterations", "~/.path_alterations")
+symlink("~/.dotfiles/bash/.bash_aliases", "~/.bash_aliases")
+symlink("~/.dotfiles/bash/.bashrc", "~/.bashrc")
+symlink("~/.dotfiles/bash/.hushlogin", "~/.hushlogin")
+symlink("~/.dotfiles/bash/.profile", "~/.profile")
 
 # Symlink Brewfile
 puts "Symlinking Brewfile..."
 %x[ ln -s ~/.dotfiles/Brewfile ~/Brewfile ]
 
 # Brewfile
-puts "Running Homebrew Bundle..."
-%x[ cd ]
-%x[ brew tap homebrew/bundle ]
-%x[ brew bundle ]
+# puts "Running Homebrew Bundle..."
+# %x[ cd ]
+# %x[ brew tap homebrew/bundle ]
+# %x[ brew bundle ]
 
-# PostgreSQL
-puts "Adding PostgreSQL to Homebrew services..."
-%x[ brew services start postgresql ]
+# puts "Adding PostgreSQL to Homebrew services..."
 
-# rbenv
+# %x[ brew services start postgresql ]
+
 puts "Cloning rbenv, ruby-build, and rbenv-default-gems..."
-git_clone(*%W[ https://github.com/rbenv/rbenv.git ~/.rbenv ])
-git_clone(*%W[ https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build ])
-git_clone(*%W[ https://github.com/rbenv/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems])
 
-# pyenv
+git_clone("rbenv/rbenv", "~/.rbenv")
+git_clone("rbenv/ruby-build", "~/.rbenv/plugins/ruby-build")
+git_clone("rbenv/rbenv-default-gems", "~/.rbenv/plugins/rbenv-default-gems")
+
 puts "Cloning pyenv..."
-git_clone(*%W[ https://github.com/pyenv/pyenv.git ~/.pyenv ])
-git_clone(*%W[ https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv ])
+
+git_clone("pyenv/pyenv", "~/.pyenv")
+git_clone("pyenv/pyenv-virtualenv", "$(pyenv root)/plugins/pyenv-virtualenv")
 
 puts "Adding Bundler to default Ruby gems..."
 %x[ echo bundler > ~/.rbenv/default-gems ]
 
-# Reload Profile
 puts "Reloading .bash_profile..."
 %x[ . ~/.bash_profile ]
 
-puts "Installing Ruby 2.4.0 and setting it as global Ruby version..."
-%x[ rbenv install --skip-existing 2.4.0 ]
-%x[ rbenv global 2.4.0 ]
+# puts "Installing Ruby 2.4.0 and setting it as global Ruby version..."
 
-# basic git config
+# %x[ rbenv install --skip-existing 2.4.0 ]
+# %x[ rbenv global 2.4.0 ]
+
 puts "Configuring Git with basic user settings..."
 %x[ git config --global user.name 'Olivier Lacan' ]
 %x[ git config --global user.email hi@olivierlacan.com ]
 %x[ git config --global push.default simple ]
 
 puts "Symlinking git configuration files..."
-%x[ ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig ]
-%x[ ln -s ~/.dotfiles/git/.gitmessage ~/.gitmessage ]
-%x[ ln -s ~/.dotfiles/git/.gitignore ~/.gitignore ]
 
-# setup git to use osxkeychain as the credential helper so 
-# that it remembers GitHub credentials
+symlink("~/.dotfiles/git/.gitconfig", "~/.gitconfig", overwrite: true)
+symlink("~/.dotfiles/git/.gitmessage", "~/.gitmessage", overwrite: true)
+symlink("~/.dotfiles/git/.gitignore", "~/.gitignore", overwrite: true)
+
 puts "Configuring Git to use Keychain..."
+
 %x[ git config --global credential.helper osxkeychain ]
 
 puts("Press Enter to continue...") 
+
 if %x[ git credential-osxkeychain get github.com ]
   puts "git is now authorized to look stuff up from Keychain!"
 else
   puts "something went to shit!"
 end
 
-%x[ ln -sf "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime ]
+puts "Setting up Sublime Text CLI command as `sublime`..."
 
-# RubyGems
+if s("command -v sublime")
+  puts "sublime command already exists"
+else
+  symlink("/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl", "~/bin/sublime")
+end
+
 %x[ gem update --system ]
 
 # Bundler
 puts "Configuring Bundler jobs to match available CPU cores..."
 cores = (%x[ sysctl -n hw.ncpu ].to_i) - 1
 %x[ bundle config --global jobs #{cores} ]
+
+s("reload")
 
 puts "All done!"
