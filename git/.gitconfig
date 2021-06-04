@@ -29,6 +29,7 @@
   a = add
 
   bl = branch --sort=-committerdate
+  br = 'branch --sort=-committerdate --format="%(committerdate:relative)%09%(refname:short)"'
 
   c = commit
   ca = commit --amend
