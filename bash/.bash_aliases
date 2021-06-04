@@ -32,7 +32,6 @@ aliases=(
   ["tower"]="gittower"
   ["xcode"]="open *.xcodeproj"
   ["s"]="sublime"
-  ["smod"]="sublime `git diff --name-only HEAD`"
   ["a"]="atom"
   ["vs"]="code"
   ["migrateback"]="rake -g rollback_branch_migrations[master]"
