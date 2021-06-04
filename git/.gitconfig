@@ -59,7 +59,8 @@
   ra = rebase --abort
   rh = reset --hard
 
-  rum = "!f() { "rebase upstream/${1}" }; f"
+  
+  rum = "!f() { rebase upstream/${1} }; f"
   ri = rebase --interactive
   rc = rebase --continue
 
