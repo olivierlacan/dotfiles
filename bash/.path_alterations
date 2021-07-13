@@ -21,7 +21,7 @@ function pathappend {
 pathprepend "~/bin"
 
 # sbin path for Homebrew
-pathprepend "/usr/local/sbin"
+pathprepend "/opt/homebrewgi/sbin"
 
 # Homebrew-installed OpenSSL
 pathprepend "$(brew --prefix openssl)/bin"
@@ -94,10 +94,9 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/readline/lib/pkgconfig $PKG_CONFIG_PAT
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # LLVM
-export PATH="/usr/local/opt/llvm@4/bin:$PATH"
-pathprepend "/usr/local/opt/llvm/bin"
-export LDFLAGS="-L/usr/local/opt/llvm/lib"
-export CPPFLAGS="-I/usr/local/opt/llvm/include"
+pathprepend "/opt/homebrew/opt/llvm/bin"
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 
 # OpenSSL
 export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib $LDFLAGS"
