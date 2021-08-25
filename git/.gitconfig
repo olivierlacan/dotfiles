@@ -122,3 +122,5 @@
 	trustExitCode = true
 [mergetool]
 	prompt = false
+[hub]
+	protocol = https
