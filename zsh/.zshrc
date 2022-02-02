@@ -15,17 +15,13 @@ eval "$(pyenv virtualenv-init -)"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
-# Load Git completion
-zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
-fpath=(~/.zsh $fpath)
+# git completion
+autoload -Uz compinit && compinit
 
 # load aliases
 if [ -f ~/.aliases.zsh ]; then
-  . ~/.aliases.zsh
+  source ~/.aliases.zsh
 fi
-
-# autoload completions
-autoload -Uz compinit && compinit
 
 # # prompt with ruby version
 # # rbenv version | sed -e 's/ .*//'
@@ -66,8 +62,27 @@ export NODE_EXTRA_CA_CERTS=/Users/olivier-lacan/zscaler/ZscalerRootCertificate-2
 
 # Custom Git ZSH prompt
 autoload -U colors && colors
+
 source /Users/olivier-lacan/Development/oss/zsh-git-prompt/zshrc.sh
 # PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%(5~|%-1~/.../%3~|%4~) %{$reset_color%}%% "
 
-PROMPT="%{$fg[red]%}%1d%{$reset_color%} %{$fg[blue]%}$(git_super_status) %# %{$reset_color%}"
+PROMPT='%{$fg[yellow]%}%1d%{$reset_color%} %{$fg[green]%}$(git_super_status) $ %{$reset_color%}'
+
+# Homebrew-installed Scala
+export PATH="/opt/homebrew/opt/scala@2.12/bin:$PATH"
+
+# Homebrew-installed Java
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk@11/include"
+
+# Get ZSH to stop assuming a word boundary with special characters in it 
+# is a WHOLE word boundary
+# via: https://unix.stackexchange.com/a/258661/65663
+autoload -U select-word-style
+select-word-style bash
+
+# https://apple.stackexchange.com/a/365225/15253
+bindkey -e
+bindkey '^[[1;9C' forward-word
+bindkey '^[[1;9D' backward-word
 

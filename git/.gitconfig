@@ -60,8 +60,9 @@
   rh = reset --hard
 
   
-  rum = "!f() { rebase upstream/${1} }; f"
+  rum = "!f() { git rebase upstream/${1}; }; f"
   ri = rebase --interactive
+  rin = "!f() { git rebase --interactive HEAD~\"$1\"; }; f"
   rc = rebase --continue
 
   co = checkout
@@ -79,6 +80,7 @@
   blastschema = !git checkout db/schema.rb
 
   localpurge = "!git branch --merged | grep -v '*' | grep -v \"$1\" | xargs git branch -d"
+  localsquashpurge = "git checkout -q main && git for-each-ref refs/heads/ \"--format=%(refname:short)\" | while read branch; do mergeBase=$(git merge-base main $branch) && [[ $(git cherry main $(git commit-tree $(git rev-parse \"$branch^{tree}\") -p $mergeBase -m _)) == \"-\"* ]] && echo \"$branch is merged into main and can be deleted\"; done"
 
 # switch to main branch, update list of remote branches, output list of
 # branches that were merged into current branch, then filter out the first
