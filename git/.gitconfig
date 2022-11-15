@@ -4,6 +4,7 @@
   signingkey = 1FF9AF6D
 [push]
 	default = simple
+  autoSetupRemote = true
 [credential]
 	helper = osxkeychain
 [url "https://github.com/"]
