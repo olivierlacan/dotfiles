@@ -22,6 +22,9 @@
 
 [commit]
   template = ~/.gitmessage
+  # always show verbose context for files changes when committing,
+  # even in interactive rebase edit mode
+  verbose = true
 
 [alias]
   # one-line log
