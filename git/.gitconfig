@@ -98,11 +98,13 @@
 # the list which will delete them on the origin remote
   remotepurge = "!git checkout \"$1\" && git remote update --prune | git branch -r --merged | sed -e \"s/origin\\//:/\" | xargs git push origin"
   remotemainpurge = "!git checkout \"$1\" && git remote update --prune | git branch -r --merged | sed -e \"s/origin\\//:/\" | xargs git push origin"
+
 # NOTE: something's wrong with this alias, disabling for now
 # tags = "!for t in `git tag -l`; do git cat-file -p `git rev-parse $t`; done"
 [rebase]
 	autoStash = true
   instructionFormat = "%s [%an]"
+  template = ~/.gitmessage
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
