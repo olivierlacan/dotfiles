@@ -31,6 +31,8 @@
   l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
   lh =  log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short HEAD ^origin/main
   lc = rev-list --count HEAD ^origin/main
+  raph = log --graph --all --format='%h %s%n (%an, %ar)%d' --abbrev-commit
+
   a = add
 
   bl = branch --sort=-committerdate
