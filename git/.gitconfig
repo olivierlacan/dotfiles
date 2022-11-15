@@ -55,14 +55,15 @@
 
   m = merge
 
-  p = pull
-  pu = push
-  puf = push --force-with-lease
+  p = pull origin
+  pu = push origin
+  puf = push origin --force-with-lease
   pup = push production
   rb = pull --rebase
   rc = rebase --continue
   ra = rebase --abort
   rh = reset --hard
+  rom = rebase origin/main
 
   
   rum = "!f() { git rebase upstream/${1}; }; f"
