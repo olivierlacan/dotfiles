@@ -123,3 +123,15 @@ function pathappend {
     *) PATH="$PATH:$1";; # appending to path
   esac
 }
+
+function browse {
+  if [ -d .git ]; then
+    gh repo view --web
+  fi
+}
+
+function network {
+  sudo arp-scan 192.168.1.0/24
+}
+
+alias s="subl"
