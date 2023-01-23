@@ -17,7 +17,7 @@
 	tool = Kaleidoscope
 [core]
   excludesfile = ~/.gitignore
-	editor = sublime -w -n
+	editor = subl -w -n
 	attributesfile = /Users/olivierlacan/.gitattributes
 
 [commit]
