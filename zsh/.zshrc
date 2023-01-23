@@ -1,5 +1,32 @@
+# Load my custom aliases
+# IMPORTANT: this needs to be first otherwise functions
+# defined in it can't be used below (like pathappend) 
+if [ -f ~/.dotfiles/zsh/.aliases.zsh ]; then
+  source ~/.dotfiles/zsh/.aliases.zsh
+fi
+
+# Fix iTerm's dumb word jump
+# https://apple.stackexchange.com/a/365225/15253
+bindkey -e
+bindkey '^[[1;9C' forward-word
+bindkey '^[[1;9D' backward-word
+
+# Get ZSH to stop assuming a word boundary with special characters in it 
+# is a WHOLE word boundary
+# via: https://unix.stackexchange.com/a/258661/65663
+# autoload -U select-word-style
+# select-word-style bash
+#
+# ^ above doesn't work so: 
+# https://stackoverflow.com/a/11200998/385622
+# Default: WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+WORDCHARS=
+
 # AutoJump
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+
+# Sublime 
+pathappend "/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 
 # rbenv/ruby
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -17,11 +44,6 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 
 # git completion
 autoload -Uz compinit && compinit
-
-# load aliases
-if [ -f ~/.aliases.zsh ]; then
-  source ~/.aliases.zsh
-fi
 
 # # prompt with ruby version
 # # rbenv version | sed -e 's/ .*//'
