@@ -21,6 +21,13 @@ flushdns() {
   sudo killall -HUP mDNSResponder
 }
 
+dns() {
+  local cmd="scutil --dns | grep nameserver"
+  echo "Printing current DNS server per this command: "
+  echo "\t ${cmd}"
+  eval ${cmd}
+}
+
 rewritehistory() {
   if [[ $# -eq 0 ]]
   then
