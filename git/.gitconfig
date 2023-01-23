@@ -62,6 +62,7 @@
   puf = push origin --force-with-lease
   pup = push production
   rb = pull --rebase
+  rom = rebase origin/main
   rc = rebase --continue
   ra = rebase --abort
   rh = reset --hard
