@@ -22,6 +22,10 @@ bindkey '^[[1;9D' backward-word
 # Default: WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 WORDCHARS=
 
+# Homebrew
+# I didn't ask you to update everything for fuck's safe
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 # AutoJump
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
