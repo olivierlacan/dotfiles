@@ -50,6 +50,11 @@ pathafter "/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 pathbefore "$HOME/.rbenv/bin"
 eval "$(rbenv init -)"
 
+# NOTE: Ruby appears to not support OpenSSL 3.0 yet: 
+# https://stackoverflow.com/a/70699541/385622
+# Change back to openssl when it does
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
 # pyenv
 # export PYENV_ROOT="$HOME/.pyenv"
 # pathbefore "$PYENV_ROOT/bin/"
