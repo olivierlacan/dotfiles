@@ -7,7 +7,7 @@ done
 
 # https://gist.github.com/mwhite/6887990
 function_exists() {
-  declare -f -F $1 > /dev/null
+  declare -f -F "$1" > /dev/null
   return $?
 }
 
@@ -34,12 +34,14 @@ rewritehistory() {
     echo 'You need to provide an argument to `rewritehistory` so it can be removed from the history.'
     return 1
   else
+    reference="$1"
+
     read -r -p "About to delete all items from history that match \"$1\". Are you sure? [y/N] " response
     if [[ $response =~ ^(yes|y)$ ]]
     then
-      echo "Removing \"$1\" from history..."
+      echo "Removing \"$reference\" from history..."
       # Delete all matched items from the file, and copy it to a temp location.
-      grep -v $1 "$HISTFILE" > /tmp/history
+      grep -v $reference "$HISTFILE" > /tmp/history
       # Overwrite the actual history file with the temp one.
       mv /tmp/history "$HISTFILE"
       # Clear all items in the current sessions history (in memory).
@@ -52,7 +54,10 @@ rewritehistory() {
   fi
 }
 
-gpgs () { echo -n "$1" | gpg --armor --encrypt -r $2 --trust-model always; }
+gpgs () { 
+  string="$1"
+  echo -n "$string" | gpg --armor --encrypt -r "$2" --trust-model always; 
+}
 
 
 function time_since_last_commit() {
@@ -84,45 +89,82 @@ function update(){
   fi
 }
 
-function dockup () {
-  if [ -z "$1" ]
+function dockit(){
+  command="$1"
+  config="$2"
+
+  if [ -z $config ]
   then
-    docker-compose up -d
+    docker-compose "$command" -d
     docker-compose ps
   else
-    echo "Running docker-compose up -d on $1";
-    docker-compose -f $1 up -d
-    docker-compose -f $1 ps
+    echo "Running docker-compose $command -d on $config";
+    docker-compose -f "$config" "$command" -d
+    docker-compose -f "$config" ps
   fi
+}
+
+function dockup () {
+  dockit up "$1"
 }
 
 function dockdown () {
-  if [ -z "$1" ]
-  then
-    docker-compose down
-  else
-    echo "Running docker-compose down on $1";
-    docker-compose -f $1 down
-  fi
+  dockit down "$1"
 }
 
 function path {
-  echo $PATH | tr ':' '\n'
+  echo "Load path entries:"
+  echo $PATH | tr ':' '\n\t'
 }
 
-function pathprepend {
-  case ":$PATH:" in
-    *":$1:"*) :;; # path entry is a duplicate
-    *) PATH="$1:$PATH";; # prepending to path
+function pathadd {
+  # echo "pathadd ($1): $2"
+  position="$1"
+  entry="$2"
+
+  if [[ -z "$entry" ]]; then
+    echo "Attempted to $position empty string" && return;
+  fi
+
+  if [[ $PATH =~ "$entry" ]]; then
+    echo "Entry $entry is already in the PATH" && return;
+  fi
+
+  case "$position" in
+    *"before"*)
+      PATH="$entry:$PATH"
+      ;;
+    *"after"*)
+      PATH="$PATH:$entry"
+      ;;
+    *)
+      echo "No position match, use either 'before' or 'after' with 'pathadd'"
   esac
 }
 
-function pathappend {
-  case ":$PATH:" in
-    *":$1:"*) :;; # path entry is a duplicate
-    *) PATH="$PATH:$1";; # appending to path
-  esac
+function pathbefore {
+  pathadd before $1
 }
+
+function pathafter {
+  pathadd after $1
+}
+
+function addflag {
+  if [ $# -lt 2 ]
+  then
+    echo "Usage: $addflag[1] <flag-name> <value>"
+    return
+  fi
+
+  echo "argument 1: $1"
+  echo "argument 2: $2"
+
+  echo "${(P)$2}"
+
+  echo "$1"
+}
+
 
 function browse {
   if [ -d .git ]; then
