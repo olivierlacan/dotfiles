@@ -1,2 +1,29 @@
-"\e[1;9D": backward-word
-"\e[1;9C": forward-word
+# /etc/inputrc - global inputrc for libreadline
+# See readline(3readline) and `info rluserman' for more information.
+
+# Be 8 bit clean.
+set input-meta on
+set output-meta on
+
+# To allow the use of 8bit-characters like the german umlauts, uncomment
+# the line below. However this makes the meta key not work as a meta key,
+# which is annoying to those which don't need to type in 8-bit characters.
+set convert-meta off
+
+# try to enable the application keypad when it is called.  Some systems
+# need this to enable the arrow keys.
+# set enable-keypad on
+
+# see /usr/share/doc/bash/inputrc.arrows for other codes of arrow keys
+
+# do not bell on tab-completion
+# set bell-style none
+# set bell-style visible
+
+# Option + Arrows to jump words.
+# WARNING: useless for iTerm since it doesn't use readline 
+# https://superuser.com/a/357394/103166
+"\e[1;9D": forward-word
+"\e[1;9C": backward-word
+"\e[9D": forward-word
+"\e[9C": backward-word
