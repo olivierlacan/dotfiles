@@ -19,6 +19,7 @@
   excludesfile = ~/.gitignore
 	editor = subl -w -n
 	attributesfile = /Users/olivierlacan/.gitattributes
+  commentchar = auto
 
 [commit]
   template = ~/.gitmessage
