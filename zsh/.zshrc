@@ -149,9 +149,5 @@ export GOBIN=$(go env GOPATH)/bin
 pathafter $(go env GOPATH)
 pathafter $(go env GOPATH)/bin
 
-# # phpenv (VERY VERY doesn't compile on macOS anymore)
-# pathbefore "$HOME/.phpenv/bin"
-# eval "$(phpenv init -)"
-
 # Complete profiling (see top of file)
 # zprof
