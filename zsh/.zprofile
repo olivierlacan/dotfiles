@@ -10,3 +10,8 @@ alias s=sublime
 
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
+# Pyenv for non interactive shells
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || pathbefore "$PYENV_ROOT/bin/"
+eval "$(pyenv init -)"
+export PATH="$PATH:$(python -m site --user-base)/bin"

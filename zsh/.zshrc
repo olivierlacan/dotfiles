@@ -56,14 +56,15 @@ eval "$(rbenv init -)"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
 # pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# pathbefore "$PYENV_ROOT/bin/"
-# eval "$(pyenv init --path)"
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || pathbefore "$PYENV_ROOT/bin/"
+eval "$(pyenv init -)"
+# this is where pip installs the pipenv binary per: 
+# https://pipenv.pypa.io/en/latest/installation/#preferred-installation-of-pipenv
+pathafter "$(python -m site --user-base)/bin"
 
-# pyenv-virtualenv
-# eval "$(pyenv virtualenv-init -)"
 
-phpdir=$(brew --prefix php@8.1)
+# PHP
 pathbefore "$phpdir/bin"
 pathbefore "$phpdir/sbin"
 
