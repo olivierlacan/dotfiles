@@ -10,7 +10,7 @@
 # Custom Git ZSH prompt
 autoload -U colors && colors
 # git completion
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -i
 
 # Load my custom aliases
 # IMPORTANT: this needs to be first otherwise functions
