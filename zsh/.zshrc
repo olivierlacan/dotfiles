@@ -134,13 +134,14 @@ eval "$(nodenv init -)"
 # 	fi
 # }
 
+# https://github.com/olivierverdier/zsh-git-prompt
 source /Users/olivierlacan/Development/oss/zsh-git-prompt/zshrc.sh
 # PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%(5~|%-1~/.../%3~|%4~) %{$reset_color%}%% "
 
 PROMPT='%{$fg[yellow]%}%1d%{$reset_color%} %{$fg[green]%}$(git_super_status) $ %{$reset_color%}'
 
 # asdf
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+# . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 # Go 
 export GOROOT=$(brew --prefix go)
