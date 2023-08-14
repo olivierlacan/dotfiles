@@ -66,29 +66,17 @@ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 phpdir=$(brew --prefix php@8.1)
 pathbefore "$phpdir/bin"
 pathbefore "$phpdir/sbin"
-export LDFLAGS="$LDFLAGS -L$phpdir/lib"
-export CPPFLAGS="$CPPFLAGS -I$phpdir/include"
 
 bzipdir=$(brew --prefix bzip2)
 pathbefore "$bzipdir/bin"
-export LDFLAGS="$LDFLAGS -L$bzipdir/lib"
-export CPPFLAGS="$CPPFLAGS -I$bzipdir/include"
 
 libxmldir=$(brew --prefix libxml2)
-export LDFLAGS="$LDFLAGS -L$libxmldir/lib"
-export CPPFLAGS="$CPPFLAGS -I$libxmldir/include"
-# export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$libxmldir/lib/pkgconfig"
 
 libiconvdir=$(brew --prefix libiconv)
-export LDFLAGS="$LDFLAGS -L$libiconvdir/lib"
-export CPPFLAGS="$CPPFLAGS -I$libiconvdir/include"
 
 # openssl
 # openssldir=$(brew --prefix openssl@1.1)
 # pathbefore "$openssldir/bin"
-# export LDFLAGS="$LDFLAGS -L$openssldir/lib"
-# export CPPFLAGS="$CPPFLAGS -I$openssldir/include"
-# export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$openssldir/lib/pkgconfig"
 
 # Homebrew-installed Scala
 scaladir=$(brew --prefix scala@2.12)
@@ -97,7 +85,6 @@ pathbefore "$scaladir/bin"
 # Homebrew-installed Java
 openjdkdir=$(brew --prefix openjdk@11)
 pathbefore "$openjdkdir/bin"
-export CPPFLAGS="$CPPFLAGS -I$openjdkdir/include"
 
 # Volta/Node
 export VOLTA_HOME="$HOME/.volta"
