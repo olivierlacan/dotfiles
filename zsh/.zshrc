@@ -65,6 +65,7 @@ pathafter "$(python -m site --user-base)/bin"
 
 
 # PHP
+phpdir=$(brew --prefix php@7.2)
 pathbefore "$phpdir/bin"
 pathbefore "$phpdir/sbin"
 
